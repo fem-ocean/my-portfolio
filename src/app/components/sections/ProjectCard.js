@@ -69,7 +69,7 @@ export default function ProjectCard({ project }) {
   return (
     <CardContainer>
       <ImageWrapper>
-        <Image src={project.image} alt={project.title} fill style={{objectFit:"cover"}} />
+        <Image src={project.image} alt={project.title} "layout='fill'" fill style={{objectFit:"cover"}} />
       </ImageWrapper>
       <Info>
         <h2>{project.title}</h2>
