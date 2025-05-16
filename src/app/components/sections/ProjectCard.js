@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import {motion} from "framer-motion";
 
 
@@ -69,7 +69,7 @@ export default function ProjectCard({ project }) {
   return (
     <CardContainer>
       <ImageWrapper>
-        <Image src={project.image} alt={project.title} fill objectFit="cover" />
+        <Image src={project.image} alt={project.title} fill style={{objectFit:"cover"}} />
       </ImageWrapper>
       <Info>
         <h2>{project.title}</h2>

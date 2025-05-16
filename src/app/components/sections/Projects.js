@@ -222,7 +222,6 @@ export default function Projects() {
         <h1>My Projects</h1>
         <p>Here are some of my works...</p>
       </ProjectSectionIntro>
-
       <ScrollButton className="left" onClick={() => scroll("left")}>
         ←
       </ScrollButton>
