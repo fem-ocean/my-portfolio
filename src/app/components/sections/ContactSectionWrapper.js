@@ -2,10 +2,10 @@
 import { useState, forwardRef } from "react";
 import Contact from "./Contact";
 import ContactModal from "../ContactModal";
-// import {motion} from "framer-motion";
+import {motion} from "framer-motion";
 import styled from "styled-components";
 
-const SectionContainer = styled.div`
+const SectionContainer = styled(motion.div)`
   height: 100vh;
   width: 100%;
   position: relative;
@@ -18,8 +18,8 @@ const StickyContent = styled.div`
   height: 100vh;
   width: 100%;
   z-index: 1;
-  border: 3px solid lime;
-  background: rgba(0, 255, 0, 0.5) !important;
+  /* border: 3px solid lime; */
+  /* background: rgba(0, 255, 0, 0.5) !important; */
 `;
 
 const SectionWrapper = styled.div`
@@ -30,7 +30,7 @@ const SectionWrapper = styled.div`
   /* padding: 20px; */
   scroll-snap-align: start;
   /* top: 0px; */
-  border: 2px dashed blue;
+  /* border: 2px dashed blue; */
 `;
 const ContactSectionWrapper = forwardRef(function ContactSectionWrapper(
   props,
@@ -55,7 +55,12 @@ const ContactSectionWrapper = forwardRef(function ContactSectionWrapper(
 
   return (
     <div ref={ref} id={props.id}> 
-      <SectionContainer>
+      <SectionContainer
+      initial={{opacity:0, y:300}}
+      whileInView={{opacity:1, y:0}}
+      transition={{duration: 1}}
+      viewport={{once:true}}
+      >
         <StickyContent>
           <Contact onOptionClick={handleOptionClick} />
           <ContactModal 

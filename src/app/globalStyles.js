@@ -12,7 +12,8 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: #121212;
     color: white;
-    overflow: visible;
+    overflow-y: visible;
+    overflow-x: hidden;
     height: 100%;
   }
 

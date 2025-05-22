@@ -1,9 +1,9 @@
 "use client";
 import styled from "styled-components";
-// import { motion } from "framer-motion";  
+import { motion } from "framer-motion";  
 import { forwardRef } from "react";
 
-const Section = styled.section`
+const Section = styled(motion.section)`
   height: 100vh;
   width: 100%;
   display: flex;
@@ -69,16 +69,18 @@ const Contact = forwardRef(({onOptionClick}, ref) =>{
 
   return (
     <Section
-      // initial={{ opacity: 0, y: 100 }}
-      // whileInView={{ opacity: 1, y: 0 }}
-      // transition={{ duration: 1 }}
-      // viewport={{ once: true }}
+      initial={{ opacity: 0, y: 200 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
       id="contact"
       ref={ref}
     >
-      <h1>Contact Me</h1>
-      <br />
-      <p>Let's work together!</p>
+      <div style={{ marginTop: "50px" }}>
+        <h1>Contact Me</h1>
+        <br />
+        <p>Let's work together!</p>
+      </div>
 
       <ClickableRows>
         <Row

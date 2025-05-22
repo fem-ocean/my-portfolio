@@ -8,6 +8,10 @@ const DotContainer = styled.div`
   gap: 16px;
   margin-top: auto;
   /* border: 2px solid red; */
+
+  /* @media (max-width: 1024px) {
+    margin-top: 0;
+  } */
 `;
 
 const Dot = styled.div`
@@ -17,8 +21,8 @@ const Dot = styled.div`
   /* background-color: ${(props) => (props.active ? "#fd8e8e" : "#ccc")}; */
   background-color: ${(props) => props.color};
   cursor: pointer;
-  opacity: 0.9;
-  transition: background-color 0.8s ease;
+  opacity: 0.95;
+  transition: background-color 0.6s ease;
 
   /* &:hover {
     background-color: #2e304b;
@@ -35,7 +39,7 @@ const ThemeDots = () => {
                 color="#fd8e8e"
                 // active={theme === "light"}
                 onClick={() => changeTheme("light")}
-                props
+  
             />
             <Dot
                 color="#fde58e"

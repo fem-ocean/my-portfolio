@@ -33,6 +33,35 @@ const TestimonialContainer = styled.div`
   text-align: center;
   padding: 50px 20px;
   color: #2e304b;
+
+  /* Small phones (portrait) */
+  @media (max-width: 359px) {
+    padding: 50px 2px;
+    height: 100%;
+    font-size: medium;
+  }
+
+  /* Most phones (landscape) */
+  @media (min-width: 360px) and (max-width: 767px) {
+    height: 70%;
+    padding: 10px 20px;
+  }
+
+  /* Tablets */
+  @media (min-width: 768px) and (max-width: 1023px) {
+  }
+
+  /* Small laptops/desktops */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+  }
+
+  /* Standard desktops */
+  @media (min-width: 1280px) and (max-width: 1439px) {
+  }
+
+  /* Large screens */
+  @media (min-width: 1440px) {
+  }
 `;
 
 const TestimonialBox = styled.div`
@@ -64,6 +93,10 @@ const StyledSwiper = styled(Swiper)`
     flex-direction: row !important;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 359px) {
+      left: 50px;
+    }
   }
   .swiper-pagination-bullet {
     width: 12px; /* Increase size */

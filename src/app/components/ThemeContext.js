@@ -8,16 +8,19 @@ const themes = {
     testimonialBg: "#fd8e8e",
     heroOverlay: "rgba(253, 142, 142, 0.3)",
     burgerCircle: "#fd8e8e",
+    fontTextColor: "#fd8e8e",
   },
   dark: {
     testimonialBg: "#fde58e",
     heroOverlay: "rgba(253, 229, 142, 0.3)",
     burgerCircle: "#fde58e",
+    fontTextColor: "#fde58e"
   },
   blue: {
     testimonialBg: "#8efdb0",
     heroOverlay: "rgba(142, 253, 176, 0.3)",
     burgerCircle: "#8efdb0",
+    fontTextColor: "#8efdb0" 
   },
 };
 

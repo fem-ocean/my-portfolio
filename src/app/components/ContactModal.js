@@ -26,7 +26,7 @@ const ModalContainer = styled(motion.div)`
   position: fixed;
   top: 10%;
   overflow: hidden;
-  height: 95vh;
+  height: 85vh;
 `;
 
 const ModalContent = styled.div`
@@ -104,7 +104,7 @@ const CloseButton = styled.div`
   height: 40px;
   position: absolute;
   right: 10%;
-  top: 15px;
+  top: 50px;
   cursor: pointer;
   font-size: 20px;
   display: flex;

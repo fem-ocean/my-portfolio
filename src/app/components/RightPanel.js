@@ -27,8 +27,8 @@ import { useTheme } from "./ThemeContext";
 const RightPanelContainer = styled.div`
   width: 50%;
   height: 100vh;
-  /* position: absolute;   */
-  position: fixed;
+  position: absolute;  
+  /* position: fixed; */
   right: 0;
   background-color: transparent;
   display: flex;
@@ -46,7 +46,8 @@ const RightPanelContainer = styled.div`
 
   @media (max-width: 1024px) {
     width: 100%;
-    left: 0;
+    /* left: 0; */
+    position: relative
   }
 `;
 
@@ -58,14 +59,21 @@ const RightPanelContainer = styled.div`
 
 const ScrollableContent = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   /* overflow-y: visible; // Must NOT be hidden */
   overflow-y: auto;
   scroll-snap-type: y mandatory;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   position: relative;  
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 1024px) {
+    /* scroll-snap-type: none; */
+    /* overflow: visible; */
+    /* height: auto; */
+
+  }
 `;
 
 const SectionContainer = styled.div`
@@ -88,8 +96,8 @@ const StickyContent = styled.div`
   height: 100vh;
   width: 100%;
   z-index: 3;
-  background-color: rgba(0, 255, 0, 0.9) !important;
-  border: 5px solid rgba(0, 255, 0, 0.9) !important;
+  /* background-color: rgba(0, 255, 0, 0.9) !important; */
+  /* border: 5px solid rgba(0, 255, 0, 0.9) !important; */
 
 
 `;  
@@ -102,6 +110,12 @@ const SectionWrapper = styled.div`
   /* border: 2px dashed red; */
   /* position: sticky; */
   /* top: 0; */
+  overflow: visible;
+
+  @media (max-width: 1024px) {
+    height: auto;
+    scroll-snap-align: none;
+  }
 `;
 
 const EmptyDiv = styled.div`
@@ -113,6 +127,10 @@ const EmptyDiv = styled.div`
   /* border: 3px solid red; */
 
   // const SectionWrapper = styled.div
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 //   height: 100vh;
 //   display: flex;
@@ -168,7 +186,9 @@ const BackgroundLayer = styled.div`
 
   @media (max-width: 1024px) {
     width: 100%;
-    right: auto;
+    /* right: auto; */
+    position: relative;
+    scroll-snap-align: start;
   }
 `;
 
@@ -194,6 +214,7 @@ const Overlay = styled.div`
   @media (max-width: 1024px) {
     width: 100%;
     right: auto;
+    position: relative;
   }
 `;
 
@@ -231,16 +252,19 @@ const StickyHeader = styled.div`
 export default function RightPanel({ sectionRefs }) {
   const { currentTheme } = useTheme();
 
+  
+
   return (
     <>
       {/* Fixed background outside of the scroll container */}
 
-      <BackgroundLayer />
-      <Overlay bgcolor={currentTheme.heroOverlay} />
+      <BackgroundLayer>
+        <Overlay bgcolor={currentTheme.heroOverlay} />
+      </BackgroundLayer>
 
-      <RightPanelContainer>
+      <RightPanelContainer id="right-panel">
         {/* Scrollable content container */}
-        <ScrollableContent id="scrollable-container">
+        <ScrollableContent id="scrollable-sections">
           <EmptyDiv />
 
           <SectionWrapper ref={sectionRefs.about} id="about">

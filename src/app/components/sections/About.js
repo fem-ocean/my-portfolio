@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const Section = styled.section`
+const Section = styled(motion.section)`
   height: 100vh;
   width: 100%;
   display: flex;
@@ -27,22 +27,42 @@ const AboutMeText = styled.div`
 export default function About() {
   return (
     <Section
-      // initial={{ opacity: 0, y: 100 }}
-      // whileInView={{ opacity: 1, y: 0 }}
-      // transition={{ duration: 1 }}
-      // viewport={{ once: true }}
+      initial={{ opacity: 0, y: 300 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
       id="about"
     >
       <AboutMeText>
         <h1>About Me</h1>
         <br />
-        <p>I am a PMP certified project manager, a business analyst and a Harvard certified web/software developer. In summary, I loooove creating digital products and I tick all the boxes that makes a great Chief Technology Officer!</p>
+        <p>
+          I’m a PMP-certified Project Manager, Business Analyst, and
+          Harvard-certified Web & Software Developer. I thrive on turning ideas
+          into polished digital products, and my multidisciplinary background
+          equips me with the vision, process rigor, and technical chops needed
+          to excel as a Chief Technology Officer.
+        </p>
         <br />
         <h3>Technical</h3>
-        <p> I am a man of different hats. On somedays, you may find me putting on my business analyst hat eliciting requirements & performing gap analysis. On other days, you may also find me leading & managing a team of developers and designers as a project manager using agile, traditional or hybrid methodologies</p>
+        <p>
+          I wear many hats:
+          <br />
+          Business Analyst — Eliciting requirements, conducting gap analyses,
+          and defining clear project scopes. <br />
+          Project Manager — Leading cross-functional teams with agile,
+          waterfall, and hybrid methodologies to deliver on time and within
+          budget. <br />
+          Developer — Architecting and building scalable web applications,
+          ensuring code quality, performance, and maintainability.
+        </p>
         <br />
         <h3>Personal</h3>
-        <p>I love to spend quality time with my family. Periodically, you may find me teaching and mentoring young people or volunteering </p>
+        <p>
+          Outside of work, I’m a family-first person—nothing recharges me like
+          quality time at home. I also give back by mentoring aspiring
+          technologists, project managers and volunteering for community education programs.
+        </p>
       </AboutMeText>
     </Section>
   );

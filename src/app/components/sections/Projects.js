@@ -10,30 +10,35 @@ const projects = [
     description: "A personal portfolio showcasing skills and projects.",
     image: "/images/ceiling.jpg",
     tech: ["React", "Next.js", "Styled Components"],
+    link: "https://femi-oshin.vercel.app/",
   },
   {
     title: "Real Estate Platform",
     description: "A scalable property listing app for agents and clients.",
     image: "/images/couple.jpeg",
     tech: ["Next.js", "Firebase", "Tailwind"],
+    link: "https://google.com",
   },
   {
     title: "E-commerce Store",
     description: "An online store with payment integration and user accounts.",
     image: "/images/product package.jpg",
     tech: ["React", "Node.js", "MongoDB"],
+    link: "https://yahoomail.com"
   },
   {
     title: "Social Media App",
     description: "A platform for users to connect and share content.",
     image: "/images/couple.jpeg",
     tech: ["React", "Firebase", "Material UI"],
+    link: "https://youtube.com",
   },
   {
     title: "Blog Platform",
     description: "A blogging site with user authentication and comments.",
     image: "/images/ceiling.jpg",
     tech: ["Next.js", "Sanity", "Tailwind"],
+    link: "https://instagram.com",
   },
 ];
 
@@ -75,6 +80,16 @@ const Section = styled.section`
   scroll-snap-align: start;
 
   /* border: 1px solid red; */
+
+  @media (max-width: 359px) {
+    justify-content: space-around;
+    padding-top: 7rem;
+  }
+  /* Most phones (landscape) */
+  @media (min-width: 360px) and (max-width: 767px) {
+    justify-content: space-around;
+    padding-top: 7rem;
+  }
 `;
 
 // const CarouselContainer = styled.div`
@@ -94,7 +109,7 @@ const CarouselContainer = styled.div`
   scroll-behavior: smooth;
   gap: 2rem;
   padding: 2rem 0;
-  padding-left: 3rem;
+  padding-left: 1.5rem;
   mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -110,6 +125,31 @@ const CarouselContainer = styled.div`
     transparent 100%
   );
   border: 3px solid #2e304b;
+
+  /* Small phones (portrait) */
+  @media (max-width: 359px) {
+    padding-left: 0rem;
+  }
+
+  /* Most phones (landscape) */
+  @media (min-width: 360px) and (max-width: 767px) {
+  }
+
+  /* Tablets */
+  @media (min-width: 768px) and (max-width: 1023px) {
+  }
+
+  /* Small laptops/desktops */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+  }
+
+  /* Standard desktops */
+  @media (min-width: 1280px) and (max-width: 1439px) {
+  }
+
+  /* Large screens */
+  @media (min-width: 1440px) {
+  }
 `;
 
 const NavButtons = styled.div`
@@ -143,7 +183,32 @@ const NavButtons = styled.div`
   height: 100px;
   color: white;
   align-items: flex-start;
-  `
+
+  /* Small phones (portrait) */
+  @media (max-width: 359px) {
+    height : 50px;
+  }
+
+  /* Most phones (landscape) */
+  @media (min-width: 360px) and (max-width: 767px) {
+  }
+
+  /* Tablets */
+  @media (min-width: 768px) and (max-width: 1023px) {
+  }
+
+  /* Small laptops/desktops */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+  }
+
+  /* Standard desktops */
+  @media (min-width: 1280px) and (max-width: 1439px) {
+  }
+
+  /* Large screens */
+  @media (min-width: 1440px) {
+  }
+`;
 
 const ScrollButton = styled.button`
   position: absolute;
@@ -182,7 +247,7 @@ export default function Projects() {
 
   function scroll(direction) {
     const container = document.getElementById("carousel-container");
-    const scrollAmount = 300;
+    const scrollAmount = 150;
     container.scrollBy({
       left: direction === "left" ? -scrollAmount : scrollAmount,
       behavior: "smooth",

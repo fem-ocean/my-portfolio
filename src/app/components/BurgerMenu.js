@@ -19,17 +19,20 @@ import { useTheme } from "./ThemeContext";
 const Hamburger = styled.img`
   width: 40px; /* Adjust size as needed */
   /* height: auto; */
-  cursor: pointer;
   /* position: fixed; */
   /* position: absolute; */
-  top: 10px;
-  justify-content: center;
-  align-items: center;
+  /* top: 10px; */
   z-index: 5000;
   transition: opacity 0.3s ease-in-out;
 
   &:hover {
     opacity: 0.8;
+  }
+
+  @media (max-width: 1024px) {
+    width: 30px; /* Adjust size for mobile */
+    /* top: 5px; */
+    position: absolute;
   }
 `;
 
@@ -41,9 +44,24 @@ const Circle = styled.div`
   border-radius: 50%;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  /* align-items: center; */
   display: flex;
-  align-self: flex-start;
+  /* align-self: flex-start; */
   z-index: 4999; /* Places it behind the hamburger */
+
+  @media (max-width: 1024px) {
+    width: 50px; /* Adjust size for mobile */
+    height: 50px;
+    top: 45px;
+    position: fixed;
+    left: 3rem;
+  }
+
+  @media (min-width: 1025px) {
+    align-self: start;
+    margin-left: 30px;
+  }
 `;
 
 // const MobileMenu = styled.div`
@@ -69,6 +87,7 @@ const Overlay = styled(motion.div)`
   z-index: 1000;
   /* background: #111; */
   pointer-events: ${({ $isVisible }) => ($isVisible ? "auto" : "none")};
+  background: rgba(0, 0, 0, 0.5);
 `;
 
 const CircleReveal = styled(motion.div)`
@@ -83,6 +102,35 @@ const CircleReveal = styled(motion.div)`
   transform-origin: left center;
   z-index: 999;
   background-color: rgb(241, 241, 241);
+
+  /* Small phones (portrait) */
+  @media (max-width: 359px) {
+    width: 6rem;
+    height: 45vh
+  }
+
+  /* Most phones (landscape) */
+  @media (min-width: 360px) and (max-width: 767px) {
+  }
+
+  /* Tablets */
+  @media (min-width: 768px) and (max-width: 1023px) {
+  }
+
+  /* Small laptops/desktops */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    width: 12rem;
+    height: 20rem;
+  }
+
+  /* Standard desktops */
+  @media (min-width: 1280px) and (max-width: 1439px) {
+  }
+
+  /* Large screens */
+  @media (min-width: 1440px) {
+  }
+
 `;
 
 const ModalContent = styled.div`
@@ -99,6 +147,37 @@ const ModalContent = styled.div`
   justify-content: space-between;
   text-align: left;
   /* border: 1px solid red; */
+
+  
+
+  /* Small phones (portrait) */
+  @media (max-width: 359px) {
+    gap: 1rem;
+    width: 75%;
+  }
+
+  /* Most phones (landscape) */
+  @media (min-width: 360px) and (max-width: 767px) {
+  }
+
+  /* Tablets */
+  @media (min-width: 768px) and (max-width: 1023px) {
+  }
+
+  /* Small laptops/desktops */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    width: 75%;
+    gap: 5rem;
+    justify-content: normal;
+  }
+
+  /* Standard desktops */
+  @media (min-width: 1280px) and (max-width: 1439px) {
+  }
+
+  /* Large screens */
+  @media (min-width: 1440px) {
+  }
 `;
 
 const CloseButton = styled.button`
@@ -132,6 +211,7 @@ const MenuItem = styled.div`
   }
 `;
 
+
 const AnimatedHamburger = motion.create(Hamburger);
 
 export default function BurgerMenu({ sectionRefs }) {
@@ -139,169 +219,15 @@ export default function BurgerMenu({ sectionRefs }) {
 
   const { currentTheme } = useTheme();
 
-  // const handleScrollTo = (id) => {
-  //   const el = document.getElementById(id);
-  //   if (el) {
-  //     el.scrollIntoView({ behavior: "smooth" });
-  //     setMenuOpen(false);
-  //   }
-  // };
-
-  // const handleScrollTo = (id) => {
-  //   const section = document.getElementById(id);
-  //   const scrollContainer = document.getElementById("scrollable-container"); // e.g., your right panel
-
-  //   if (section && scrollContainer) {
-  //     const containerTop = scrollContainer.getBoundingClientRect().top;
-  //     const sectionTop = section.getBoundingClientRect().top;
-  //     const scrollOffset = sectionTop - containerTop;
-
-  //     scrollContainer.scrollTo({
-  //       top: scrollOffset,
-  //       behavior: "smooth",
-  //     });
-  //     console.log("scrollOffset", scrollOffset);
-
-  //     setMenuOpen(false);
-  //   }
-  // };
-
-  // const handleScrollTo = (id) => {
-  //   const section = document.getElementById(id);
-  //   const scrollContainer = document.getElementById("scrollable-container");
-
-  //   if (section && scrollContainer) {
-  //     const scrollOffset = section.offsetTop;
-  //     console.log("scrollOffset", scrollOffset);
-
-  //     scrollContainer.scrollTo({
-  //       top: scrollOffset,
-  //       behavior: "smooth",
-  //     });
-
-  //     setMenuOpen(false);
-  //   }
-  // };
-
-  // const handleScrollTo = (section) => {
-  //   setMenuOpen(false);
-
-  //   setTimeout(() => {
-  //     const scrollContainer = document.getElementById("scrollable-container");
-  //     const sectionRef = sectionRefs.current[section];
-
-  //     if (sectionRef?.current && scrollContainer) {
-  //       const containerRect = scrollContainer.getBoundingClientRect();
-  //       const sectionRect = sectionRef.current.getBoundingClientRect();
-  //       const scrollPosition = sectionRect.top - containerRect.top + scrollContainer.scrollTop;
-
-  //       console.log(`Scroll to "${section}" -> ScrollPosition:`, scrollPosition);
-
-  //       scrollContainer.scrollTo({
-  //         top: scrollPosition,
-  //         behavior: "smooth",
-  //       });
-
-  //       setMenuOpen(false);
-  //     }
-  //   }, 100);
-  // };
-
-  // const handleScrollTo = (section) => {
-  //   setMenuOpen(false);
-
-  //   setTimeout(() => {
-  //     const sectionRef = sectionRefs.current[section];
-  //     if (sectionRef?.current) {
-  //       sectionRef.current.scrollIntoView({
-  //         behavior: "smooth",
-  //         block: "nearest", // Try this instead of "start"
-  //       });
-  //     }
-  //   }, 100);
-  // };
-
-  // const handleScrollTo = (id) => {
-  //   const scrollContainer = document.getElementById("scrollable-container");
-  //   const section = sectionRefs.current[id]?.current;
-
-  //   if (!scrollContainer || !section) return;
-
-  //   const sectionOffsetTop = section.offsetTop;
-
-  //   scrollContainer.scrollTo({
-  //     top: sectionOffsetTop,
-  //     behavior: "smooth",
-  //   });
-
-  //   setMenuOpen(false);
-  // };
-
-  // const handleScrollTo = (section) => {
-  //   // close the menu immediately
-  //   setMenuOpen(false);
-
-  //   // tiny delay to let the overlay animate out
-  //   setTimeout(() => {
-  //     const sectionRef = sectionRefs.current[section];
-  //     if (sectionRef && sectionRef.current) {
-  //       sectionRef.current.scrollIntoView({
-  //         behavior: "smooth",
-  //         block: "start", // align the top of the section with the top of the container
-  //       });
-  //       console.log(`Scrolled to ${section}`);
-  //     }else {
-  //       console.warn(`Section ${section} not found`);
-  //     }
-  //   }, 100);
-  // };
-
-  // const handleScrollTo = (section) => {
-  //   const sectionRef = sectionRefs.current[section];
-
-  //   if (sectionRef && sectionRef.current) {
-  //     sectionRef.current.scrollIntoView({
-  //       behavior: "smooth",
-  //       block: "start",
-  //     });
-  //     console.log(`Scrolled to ${section}`);
-  //   } else {
-  //     console.warn(`Section ${section} not found`);
-  //   }
-  // };
-
-  // const handleScrollTo = (section) => {
-  //   setMenuOpen(false);
-
-  //   setTimeout(() => {
-  //     const scrollContainer = document.getElementById("scrollable-container");
-  //     const sectionRef = sectionRefs[section];
-
-  //     if (sectionRef?.current && scrollContainer) {
-  //       // Get the container's current scroll position
-  //       const containerScrollTop = scrollContainer.scrollTop;
-
-  //       // Get the section's offset relative to the container
-  //       const sectionOffsetTop = sectionRef.current.offsetTop;
-
-  //       console.log(`Scrolling to "${section}"`);
-  //       console.log("Container scrollTop:", containerScrollTop);
-  //       console.log("Section offsetTop:", sectionOffsetTop);
-
-  //       scrollContainer.scrollIntoView({
-  //         top: sectionOffsetTop,
-  //         behavior: "smooth",
-  //       });
-  //     }
-  //   }, 100);
-  // };
+  const menuModalRef = useRef(null);
 
   const handleScrollTo = (section) => {
+    if (window.innerWidth <= 1024) {
     setMenuOpen(false);
 
     // Use requestAnimationFrame for better timing
     requestAnimationFrame(() => {
-      const scrollContainer = document.getElementById("scrollable-container");
+      const scrollContainer = document.getElementById("scrollable-sections");
       const sectionRef = sectionRefs[section];
 
       // Debugging logs
@@ -332,25 +258,93 @@ export default function BurgerMenu({ sectionRefs }) {
         });
       }
     });
+  }else {
+    setMenuOpen(false);
+
+    setTimeout(() => {
+      // Small delay to ensure menu closes first
+      const scrollContainer = document.getElementById("scrollable-sections");
+      const sectionElement = sectionRefs[section]?.current;
+
+      if (!scrollContainer || !sectionElement) {
+        console.error("Scroll elements not found");
+        return;
+      }
+
+      // Simple and reliable scroll method
+      sectionElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 50);
+  }
+  };
+
+  // const handleScrollTo = (section) => {
+  //   
+  // };
+
+  useEffect(() => {
+    // console.log("Menu open state:", menuOpen);
+    // console.log("Menu modal ref:", menuModalRef.current);
+    // console.log("useEffect triggered");
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    const handleClickOutside = (event) => {
+      
+
+      const isHamburger = event.target.closest("#hamburger");
+      const isInsideModal = menuModalRef.current?.contains(event.target);
+
+      // console.log("Is hamburger?", isHamburger);
+      // console.log("Is inside modal?", isInsideModal);
+
+      if (!isHamburger && !isInsideModal) {
+        // console.log("closing menu");
+        setMenuOpen(false);
+      }
+    }
+    // Add event listener to close modal on outside click
+
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
+  const handleHamburgerClick = () => {
+    setMenuOpen((prev) => !prev);
   };
 
   return (
     <>
-      <Circle bgcolor={currentTheme.burgerCircle}>
+      <Circle
+        bgcolor={currentTheme.burgerCircle}
+        // onClick={() => {
+        //   setMenuOpen((prev) => !prev);
+        // }}
+        onClick={handleHamburgerClick}
+        id="hamburger"
+      >
         <AnimatedHamburger
           src="/images/icon-hamburger.png"
           alt="menu"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          onClick={() => setMenuOpen(!menuOpen)}
         />
       </Circle>
-
-      {/* <MobileMenu open={menuOpen}> */}
-      {/* <CloseButton onClick={() => setMenuOpen(false)}>✕</CloseButton> */}
-      {/* Add menu items here  */}
-      {/* </MobileMenu> */}
 
       <AnimatePresence>
         {menuOpen && (
@@ -360,6 +354,7 @@ export default function BurgerMenu({ sectionRefs }) {
             exit={{ opacity: 0 }}
             $isVisible={menuOpen}
           >
+            <div ref={menuModalRef}>
             <CircleReveal
               initial={{ scale: 0 }}
               animate={{ scale: 3 }}
@@ -395,11 +390,12 @@ export default function BurgerMenu({ sectionRefs }) {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: menuOpen ? 1 : 0 }}
-                transition={{ delay: 0.7, duration: 0.3 }} // Delay matches menu animation
+                transition={{ delay: 0.45, duration: 3 }} // Delay matches menu animation
               >
                 <ThemeDots />
               </motion.div>
             </ModalContent>
+            </div>
           </Overlay>
         )}
       </AnimatePresence>
