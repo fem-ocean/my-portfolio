@@ -142,5 +142,6 @@ const Contact = forwardRef(({onOptionClick}, ref) =>{
     </Section>
   );
 })
+Contact.displayName = "Contact";
 
 export default Contact;

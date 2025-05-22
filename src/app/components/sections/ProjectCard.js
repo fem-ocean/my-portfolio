@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import {motion} from "framer-motion";
-
+import { motion } from "framer-motion";
 
 // const CardContainer = styled.div`
 //   width: 40vw;
@@ -80,9 +79,10 @@ const Info = styled.div`
     }
 
     /* Most phones (landscape) */
-  @media (min-width: 360px) and (max-width: 767px) {
+    @media (min-width: 360px) and (max-width: 767px) {
     font-size: 18px;
   }
+}
 
   p {
     font-size: 16px;
@@ -92,8 +92,9 @@ const Info = styled.div`
       font-size: 10px;
     }
     /* Most phones (landscape) */
-  @media (min-width: 360px) and (max-width: 767px) {
+    @media (min-width: 360px) and (max-width: 767px) {
     font-size: 12px;
+    }
   }
 `;
 
@@ -115,8 +116,6 @@ const TechStack = styled.div`
     }
   }
 `;
-
-
 
 export default function ProjectCard({ project }) {
   return (
@@ -142,4 +141,3 @@ export default function ProjectCard({ project }) {
     </CardContainer>
   );
 }
-

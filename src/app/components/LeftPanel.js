@@ -193,13 +193,13 @@ export default function LeftPanel({ sectionRefs }) {
 
       <InfoDiv themetextcolor={currentTheme.fontTextColor}>
         <Name>
-          Hello. I'm Olufemi Oshin. I am a PMP-certified Project Manager,
-          Business Analyst and Harvard-certified Web & Software Developer
+          {`Hello. I'm Olufemi Oshin. I am a PMP-certified Project Manager,
+          Business Analyst and Harvard-certified Web & Software Developer`}
         </Name>
         <Title>
-          I bridge the gap between business needs and digital solutions—managing
+          {`I bridge the gap between business needs and digital solutions—managing
           projects end to end, gathering precise requirements, and building
-          products that users love.
+          products that users love.`}
         </Title>
       </InfoDiv>
 
