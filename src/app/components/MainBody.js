@@ -31,6 +31,7 @@ export default function MainBody({ children }) {
   //initialize refs for each section
   const sectionRefs = {
     about: useRef(null),
+    certifications: useRef(null),
     projects: useRef(null),
     references: useRef(null),
     contact: useRef(null),

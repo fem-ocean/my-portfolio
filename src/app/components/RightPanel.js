@@ -4,6 +4,7 @@ import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Contact from "./sections/Contact";
 import Testimonials from "./sections/Testimonials";
+import Certification from "./sections/Certification";
 import ContactSectionWrapper from "./sections/ContactSectionWrapper";
 import { useRef, useEffect } from "react";
 import { useTheme } from "./ThemeContext";
@@ -271,6 +272,14 @@ export default function RightPanel({ sectionRefs }) {
             <SectionContainer>
               <StickyContent>
                 <About />
+              </StickyContent>
+            </SectionContainer>
+          </SectionWrapper>
+
+          <SectionWrapper ref={sectionRefs.certifications} id="certifications">
+            <SectionContainer>
+              <StickyContent>
+                <Certification />
               </StickyContent>
             </SectionContainer>
           </SectionWrapper>

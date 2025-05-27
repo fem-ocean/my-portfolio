@@ -15,6 +15,13 @@ const Section = styled(motion.section)`
   scroll-snap-align: start;
   
   background-color:#fff;
+
+  @media (max-width:359px){
+    font-size: 12px;
+  }
+  @media (min-width:360px) and (max-width:768px){
+    font-size: 14px;
+  }
 `;
 
 const AboutMeText = styled.div`

@@ -20,6 +20,11 @@ const Section = styled.section`
   scroll-snap-align: start;
   background-color: ${(props) => props.bgcolor};
   /* background-color: #fd8e8e; */
+
+  /* Most phones (landscape) */
+  @media (min-width: 360px) and (max-width: 767px) {
+    padding: 21px;
+  }
 `;
 
 const TestimonialContainer = styled.div`
@@ -33,6 +38,8 @@ const TestimonialContainer = styled.div`
   text-align: center;
   padding: 50px 20px;
   color: #2e304b;
+  justify-content: center;
+  align-items: center;
 
   /* Small phones (portrait) */
   @media (max-width: 359px) {
@@ -43,7 +50,7 @@ const TestimonialContainer = styled.div`
 
   /* Most phones (landscape) */
   @media (min-width: 360px) and (max-width: 767px) {
-    height: 70%;
+    height: 85%;
     padding: 10px 20px;
   }
 

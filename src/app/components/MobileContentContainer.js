@@ -1,6 +1,7 @@
 import About from "./sections/About";
 import Projects from "./sections/Projects";
 import Testimonials from "./sections/Testimonials";
+import Certification from "./sections/Certification";
 import ContactSectionWrapper from "./sections/ContactSectionWrapper";
 import styled from "styled-components";
 import { useTheme } from "./ThemeContext";
@@ -70,13 +71,16 @@ const MobileContentContainer = ({ sectionRefs }) => {
     const {currentTheme} = useTheme();
   return (
     <>
-    
       <BackgroundLayer>
         <Overlay bgcolor={currentTheme.heroOverlay} />
       </BackgroundLayer>
 
       <SectionWrapper ref={sectionRefs.about} id="about">
         <About />
+      </SectionWrapper>
+
+      <SectionWrapper ref={sectionRefs.certifications} id="certifications">
+        <Certification />
       </SectionWrapper>
 
       <SectionWrapper ref={sectionRefs.references} id="references">
@@ -90,7 +94,6 @@ const MobileContentContainer = ({ sectionRefs }) => {
       <SectionWrapper ref={sectionRefs.contact} id="contact">
         <ContactSectionWrapper />
       </SectionWrapper>
-    
     </>
   );
 };

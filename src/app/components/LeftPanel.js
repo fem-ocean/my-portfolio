@@ -62,6 +62,7 @@ const Name = styled.h1`
 
   /* Most phones (landscape) */
   @media (min-width: 360px) and (max-width: 767px) {
+    font-size: 1.8rem;
   }
 
   /* Tablets */
@@ -181,7 +182,7 @@ export default function LeftPanel({ sectionRefs }) {
 
   return (
     <LeftPanelContainer id="main-content"
-    variants={leftPanelVariants}  
+    // variants={leftPanelVariants}  
     initial="hidden"
       animate="visible"
       // whileInView={{ opacity: 1, x: -500 }}

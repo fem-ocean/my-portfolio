@@ -111,6 +111,7 @@ const CircleReveal = styled(motion.div)`
 
   /* Most phones (landscape) */
   @media (min-width: 360px) and (max-width: 767px) {
+    height: 40vh;
   }
 
   /* Tablets */
@@ -158,6 +159,8 @@ const ModalContent = styled.div`
 
   /* Most phones (landscape) */
   @media (min-width: 360px) and (max-width: 767px) {
+    width: 100%;
+    /* height: 70%; */
   }
 
   /* Tablets */
@@ -369,9 +372,9 @@ export default function BurgerMenu({ sectionRefs }) {
                   <h4>About</h4>
                   <p>Delicately tender with a slice of cheese</p>
                 </MenuItem>
-                <MenuItem onClick={() => handleScrollTo("clients")}>
-                  <h4>Clients</h4>
-                  <p>Our great selection from the best in town</p>
+                <MenuItem onClick={() => handleScrollTo("certifications")}>
+                  <h4>Certifications</h4>
+                  <p>Recognition from the best institutions</p>
                 </MenuItem>
                 <MenuItem onClick={() => handleScrollTo("references")}>
                   <h4>References</h4>
