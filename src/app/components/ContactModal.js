@@ -2,7 +2,8 @@
 
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const ModalOverlay = styled(motion.div)`
   position: fixed;
@@ -30,11 +31,11 @@ const ModalContainer = styled(motion.div)`
 `;
 
 const ModalContent = styled.div`
-  overflow-y: auto;
+  overflow-y: scroll;
   padding: 1rem;
   max-height: 70vh;
   /* border: 1px solid red; */
-  margin-top: 60px;
+  margin-top: 20px;
 `;
 
 const FormGroup = styled.div`
@@ -84,17 +85,26 @@ const Button = styled.button`
   margin-top: 40px;
   padding: 10px 20px;
   font-size: 14px;
-  /* font-weight: bold; */
+  font-weight: bold;
   color: #fd8e8e;
   background-color: white;
-  border: #fd8e8e 1px solid;
+  border: #fd8e8e 3px solid;
   border-radius: 50px;
   text-decoration: none;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     background-color: #fd8e8e;
     color: white;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 `;
 
@@ -155,7 +165,8 @@ const Select = styled.select`
 
 export default function ContactModal({ isOpen, onClose, selectedOption }) {
   const modalRef = useRef(null);
-
+  const formRef = useRef(null);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -175,7 +186,6 @@ export default function ContactModal({ isOpen, onClose, selectedOption }) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
-
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
@@ -184,6 +194,41 @@ export default function ContactModal({ isOpen, onClose, selectedOption }) {
     };
   }, [onClose, isOpen]);
 
+  // ✅ Reset success when modal is closed
+  useEffect(() => {
+    if (!isOpen) {
+      setSuccess(false);
+    }
+  }, [isOpen]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Here you would typically send the form data to your server or email service
+    emailjs
+      .sendForm(
+        "service_a4s7pvp", // <-- replace with actual ID
+        "template_hpcczdl", // <-- replace with actual ID
+        formRef.current,
+        "DM2EDS_1C6qJOck3q" // <-- replace with actual key
+      )
+      .then(
+        () => {
+          setSuccess(true);
+          setTimeout(() => {
+            setSuccess(false); // hide message after a while
+          }, 10000);
+          formRef.current.reset();
+        },
+        (error) => {
+          console.error("EmailJS error:", error);
+          setSuccess(false);
+        }
+      );
+
+  };
+
+  
   return (
     <AnimatePresence>
       {isOpen && (
@@ -199,29 +244,40 @@ export default function ContactModal({ isOpen, onClose, selectedOption }) {
             exit={{ y: 50, opacity: 0 }}
             ref={modalRef}
           >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "20px",
+                marginTop: "0.5rem",
+              }}
+            >
+              <Circle bgcolor={selectedOption.color}>
+                <Hamburger src={selectedOption.icon} alt="icon" />
+              </Circle>
+
+              <h3 style={{ marginBottom: "1.5rem", marginTop: "1.5rem" }}>
+                {selectedOption.label}
+              </h3>
+            </div>
+            {success && (
+              <p style={{ marginTop: "0.5rem", margin: "auto", color: "green" }}>
+                Message sent successfully! 🎉
+              </p>
+            )}
             <ModalContent>
               <CloseButton onClick={onClose}>X</CloseButton>
 
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "20px",
-                  marginTop: "1.5rem",
-                }}
-              >
-                <Circle bgcolor={selectedOption.color}>
-                  <Hamburger src={selectedOption.icon} alt="icon" />
-                </Circle>
-                <h3 style={{ marginBottom: "1.5rem", marginTop: "1.5rem" }}>
-                  {selectedOption.label}
-                </h3>
-              </div>
-              <form>
+              <form ref={formRef} onSubmit={handleSubmit}>
                 <FormGroup>
+                  <Input
+                    name="selectedOption"
+                    type="hidden"
+                    value={selectedOption.label}
+                  />
                   <Label htmlFor="name">Name</Label>
                   <Input
-                    id="name"
+                    name="name"
                     type="text"
                     placeholder="Alex Jones"
                     required
@@ -230,7 +286,7 @@ export default function ContactModal({ isOpen, onClose, selectedOption }) {
                 <FormGroup>
                   <Label htmlFor="email">Email</Label>
                   <Input
-                    id="email"
+                    name="email"
                     type="email"
                     placeholder="hello@example.com"
                     required
@@ -238,22 +294,22 @@ export default function ContactModal({ isOpen, onClose, selectedOption }) {
                 </FormGroup>
                 <FormGroup>
                   <Label htmlFor="company">Company</Label>
-                  <Input id="company" type="text" placeholder="Google Inc" />
+                  <Input name="company" type="text" placeholder="Google Inc" />
                 </FormGroup>
 
                 <FormGroup>
                   <Label htmlFor="budget">Budget</Label>
-                  <Input id="budget" type="text" placeholder="$2000" />
+                  <Input name="budget" type="text" placeholder="$2000" />
                 </FormGroup>
 
                 <FormGroup>
                   <Label htmlFor="start-date">Start Date</Label>
-                  <Input id="start-date" type="date" />
+                  <Input name="start-date" type="date" />
                 </FormGroup>
                 <FormGroup>
                   <Label htmlFor="end-date">End Date</Label>
                   <Input
-                    id="end-date"
+                    name="end-date"
                     type="date"
                     style={{ color: "#2e304b" }}
                   />
@@ -261,7 +317,7 @@ export default function ContactModal({ isOpen, onClose, selectedOption }) {
                 <FormGroup>
                   <Label htmlFor="message">Message</Label>
                   <Textarea
-                    id="message"
+                    name="message"
                     placeholder="I heard you are the best in this field..."
                     rows="4"
                     required
@@ -271,7 +327,7 @@ export default function ContactModal({ isOpen, onClose, selectedOption }) {
                 <FormGroup>
                   <Label htmlFor="source">How did you find me?</Label>
                   <Select
-                    id="source"
+                    name="source"
                     style={{
                       padding: "0.5rem",
                       borderRadius: "4px",
